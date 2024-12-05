@@ -51,7 +51,7 @@ public class BigQueryForeignKeySnapshotGenerator extends ForeignKeySnapshotGener
                 .append("CCU.TABLE_SCHEMA as PRIMARY_KEY_TABLE_SCHEMA, ")
                 .append("CCU.TABLE_NAME as PRIMARY_KEY_TABLE, ")
                 .append("CCU.COLUMN_NAME as PRIMARY_KEY_COLUMN ")
-                .append(String.format("FROM %1$s.INFORMATION_SCHEMA.TABLE_CONSTRAINTS as TC JOIN %1$s.INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE as CCU on " +
+                .append(String.format("FROM `%1$s.INFORMATION_SCHEMA.TABLE_CONSTRAINTS` as TC JOIN %1$s.INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE as CCU on " +
                                 "TC.CONSTRAINT_NAME=CCU.CONSTRAINT_NAME JOIN %1$s.INFORMATION_SCHEMA.KEY_COLUMN_USAGE as KCU on KCU.CONSTRAINT_NAME=TC.CONSTRAINT_NAME ",
                         database.escapeObjectName(searchSchema, Schema.class)))
                 .append("WHERE TC.TABLE_NAME=? AND TC.TABLE_SCHEMA=? AND TC.TABLE_CATALOG=? AND TC.CONSTRAINT_TYPE='FOREIGN KEY' AND TC.CONSTRAINT_NAME=?")
